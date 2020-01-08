@@ -25,7 +25,7 @@ document.getElementById('current-0').textContent='0';
 document.getElementById('current-1').textContent='0';
 
 
-
+//Event listener for the button Roll
 document.querySelector('.btn-roll').addEventListener('click', function(){
   //1.Random number
   var dice=Math.floor(Math.random()*6)+1;
@@ -51,8 +51,16 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
     document.querySelector('.player-1-panel').classList.toggle('active');
 
     document.querySelector('.dice').style.display='none';
-
   }
+})
 
+//Event Listener for the button hold
+document.querySelector('.btn-hold').addEventListener('click', function(){
+  //Add current score to global scores
+  scores[activePlayer] += roundScore;
 
+  //Update the UI
+  document.querySelector('#score-' + activePlayer).textContent=scores[activePlayer]
+
+  //Check if player won the game
 })
