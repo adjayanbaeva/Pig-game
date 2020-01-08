@@ -1,30 +1,33 @@
-// Declaring variables
+/*
+GAME RULES:
+
+- The game has 2 players, playing in rounds
+- In each turn, a player rolls a dice as many times as he wishes. Each reslut gets added to his ROUND score;
+-  BUT, if the player rolls a 1, all his ROUND score gets lost. After that, it's the nest player's turn;
+- The player can choose to "Hold", which means that his ROUND score gets added to his GLBAL score. After that, it's the next player's turn;
+- The first player to reach 100 points on GLOBAL score wins the game;
+*/
+
+//DECLARING VARIABLES
+
 var scores, roundScore, activePlayer;
-scores=[0,0];
-roundScore=0;
-activePlayer=0;
-
-dice=Math.floor(Math.random()*6)+1;
+scores = [0, 0];
+roundScore = 0;
+activePlayer = 0;
 
 
- document.querySelector('#current-'+activePlayer).textContent = dice
-// document.querySelector('#current-'+activePlayer).innerHTML="<em>"+dice+"</em>";
+//DOM MANIPULATION
+document.querySelector('.dice').style.display='none'
 
+document.getElementById('score-0').textContent='0';
+document.getElementById('score-1').textContent='0';
+document.getElementById('current-0').textContent='0';
+document.getElementById('current-1').textContent='0';
 
-
-//  We can also read the elements from a webpage using querySelector method and store it in a variable:
-
-var x = document.querySelector('#score-0').textContent;
-console.log(x)
-
-
-//We can also use the querySelector to change the css of element of the webpage
-
-document.querySelector('.dice').style.display ='none';
 
 
 document.querySelector('.btn-roll').addEventListener('click', function(){
-  //1. Random Number
+  //1.Random number
   var dice=Math.floor(Math.random()*6)+1;
 
   //2. Display the result
@@ -32,5 +35,14 @@ document.querySelector('.btn-roll').addEventListener('click', function(){
   diceDOM.style.display='block';
   diceDOM.src='dice-'+dice+'.png';
 
-  //3. Update the round score if the rolled number was not a 1
+  //3. Update the round score IF the rolled number was NOT a 1
+  if (dice !== 1){
+    //Add score
+    roundScore += dice;
+    document.querySelector('#current-' + activePlayer).textContent = roundScore;
+  }else{
+    //Next player
+  }
+
+
 })
